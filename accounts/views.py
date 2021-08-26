@@ -37,6 +37,6 @@ def edit_customer(request,customer_id):
     if form.is_valid():
         form.save()
         messages.success(request,'Customer Successfully Updated')
-        return redirect('accounts:dashboard')
+        return redirect('accounts:customer',customer_id)
     context = {'form':form}
     return render(request,'accounts/add_customer.html',context)
