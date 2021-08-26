@@ -1,7 +1,13 @@
 from django.db.models import fields
-from django.forms import ModelForm
+from django.forms import ModelForm,DateInput,TimeInput
 from .models import *
 from django.views.generic import CreateView
+
+class DateInput(DateInput):
+    input_type = 'date'
+
+class TimeInput(TimeInput):
+    input_type = 'time'
 
 class CustomerForm(ModelForm):
     class Meta:
@@ -12,3 +18,7 @@ class OrderForm(ModelForm):
     class Meta:
         model = Order
         fields = '__all__'
+        widgets = {
+            'delivery_date':DateInput(),
+            'delivery_time':TimeInput
+        }

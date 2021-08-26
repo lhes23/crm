@@ -14,7 +14,7 @@ def dashboard(request):
         'products_count':Product.objects.count(),
         'products':Product.objects.all(),
         'orders_count':Order.objects.count(),
-        'orders':Order.objects.all().order_by('delivery')
+        'orders':Order.objects.all().order_by('delivery_date')
     }
     template = 'accounts/dashboard.html'
     return render(request,template,context)
@@ -54,7 +54,6 @@ def delete_customer(request,customer_id):
     context = {'customer':customer}
     template = 'accounts/customer/delete_customer.html'
     return render(request,template,context)
-
 
 def add_order(request):
     form = OrderForm(request.POST or None)

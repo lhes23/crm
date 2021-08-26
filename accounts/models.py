@@ -26,7 +26,8 @@ class Order(models.Model):
     )
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
-    delivery = models.DateTimeField(default=timezone.now)
+    delivery_date = models.DateTimeField(default=timezone.now)
+    delivery_time = models.TimeField(null=True,default=timezone.now)
     status = models.CharField(max_length=200,choices=STATUS,null=True)
 
     def __str__(self):

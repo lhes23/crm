@@ -17,9 +17,6 @@
               <div class="card-body">
                 {% csrf_token %}
                 {{form|crispy}}
-                <div class="form-group">
-                    {{form.delivery|as_crispy_field}}
-                </div>
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary btn-block">Submit</button>
                   <a href="{% url 'accounts:dashboard'%}" class="btn btn-danger btn-block">Cancel</a>
