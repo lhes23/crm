@@ -40,3 +40,11 @@ def edit_customer(request,customer_id):
         return redirect('accounts:customer',customer_id)
     context = {'form':form}
     return render(request,'accounts/add_customer.html',context)
+
+def delete_customer(request,customer_id):
+    customer = Customer.objects.get(pk=customer_id)
+    if request.method == 'POST':
+        customer.delete()
+        return redirect('accounts:dashboard')
+    context = {'customer':customer}
+    return render(request,'accounts/delete_customer.html',context)

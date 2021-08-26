@@ -1,0 +1,19 @@
+{% extends 'accounts/layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Customer Profile{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <form action="" method=post>
+            {% csrf_token %}
+            <div class="alert alert-danger">Are you sure you want to delete {{customer.name}} ?</div>
+            <input type="submit" class="btn btn-success" value="Yes">
+            <a href="{% url 'accounts:customer' customer.id%}" class="btn btn-info">Cancel</a>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
