@@ -1,0 +1,39 @@
+ <!-- TABLE: ORDERS -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">Orders</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Name</th>
+                      <th>Product</th>
+                      <th>Address</th>
+                      <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                    <tr>
+                      <td><a href="pages/examples/invoice.html">{{order.id}}</a></td>
+                      <td>{{order.customer}}</td>
+                      <td>{{order.product}}</td>
+                      <td>{{order.customer.address}}</td>
+                      <td><span class="badge badge-info">{{order.status}}</span></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <a href="" class="btn btn-sm btn-info float-left">Place New Order</a>
+              </div>
+              <!-- /.card-footer -->
+            </div>

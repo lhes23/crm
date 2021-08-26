@@ -1,0 +1,25 @@
+ <!-- USERS LIST -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Customers</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body p-0">
+                    <ul class="users-list clearfix">
+                      {% for customer in customers %}
+                      <li>
+                        {% comment %} <img src="dist/img/user1-128x128.jpg" alt="User Image"> {% endcomment %}
+                        <a class="users-list-name" href="#">{{customer.name}}</a>
+                        <span class="users-list-date">{{customer.date_created | date:'F d, Y'}}</span>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                    <!-- /.users-list -->
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer text-center">
+                    <a href="{% url 'accounts:add_customer'%}" class="btn btn-info">Add New Customer</a>
+                  </div>
+                  <!-- /.card-footer -->
+                </div>
+                <!--/.card -->
