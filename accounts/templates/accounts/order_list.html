@@ -1,0 +1,6 @@
+<h1>Test Class Based Views</h1>
+<ul>
+    {% for order in order_list %}
+        <li>{{order.customer}} - {{order.product}} - {{order.delivery_date}} - {{order.delivery_time}} </li>
+    {% endfor %}
+</ul>

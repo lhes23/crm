@@ -4,6 +4,9 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+
 def index(request):
     return render(request,'accounts/index.html')
 
@@ -85,3 +88,10 @@ def delete_order(request,order_id):
     context = {'order':order}
     template = 'accounts/order/delete_order.html'
     return render(request,template,context)
+
+class OrderList(ListView):
+    model = Order
+
+class CustomerView(DetailView):
+    model = Customer
+    template_name = 'accounts/customer/customer.html'
