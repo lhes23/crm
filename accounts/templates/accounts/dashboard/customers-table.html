@@ -9,7 +9,7 @@
                       {% for customer in customers %}
                       <li>
                         {% comment %} <img src="dist/img/user1-128x128.jpg" alt="User Image"> {% endcomment %}
-                        <a class="users-list-name" href="#">{{customer.name}}</a>
+                        <a class="users-list-name" href="{% url 'accounts:customer' customer.id %}">{{customer.name}}</a>
                         <span class="users-list-date">{{customer.date_created | date:'F d, Y'}}</span>
                       </li>
                       {% endfor %}

@@ -18,11 +18,25 @@ def dashboard(request):
     }
     return render(request,'accounts/dashboard.html',context)
 
+def customer(request,customer_id):
+    context = {'customer':Customer.objects.get(pk=customer_id)}
+    return render(request,'accounts/customer.html',context)
+
 def add_customer(request):
     form = CustomerForm(request.POST or None)
     if form.is_valid():
         form.save()
         messages.success(request,'Customer Successfully Added')
+        return redirect('accounts:dashboard')
+    context = {'form':form}
+    return render(request,'accounts/add_customer.html',context)
+
+def edit_customer(request,customer_id):
+    customer = Customer.objects.get(pk=customer_id)
+    form = CustomerForm(request.POST or None, instance=customer)
+    if form.is_valid():
+        form.save()
+        messages.success(request,'Customer Successfully Updated')
         return redirect('accounts:dashboard')
     context = {'form':form}
     return render(request,'accounts/add_customer.html',context)
