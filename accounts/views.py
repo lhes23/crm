@@ -21,7 +21,8 @@ def dashboard(request):
 
 def customer(request,customer_id):
     context = {'customer':Customer.objects.get(pk=customer_id)}
-    return render(request,'accounts/customer/customer.html',context)
+    template = 'accounts/customer/customer.html'
+    return render(request,template,context)
 
 def add_customer(request):
     form = CustomerForm(request.POST or None)
@@ -30,7 +31,8 @@ def add_customer(request):
         messages.success(request,'Customer Successfully Added')
         return redirect('accounts:dashboard')
     context = {'form':form}
-    return render(request,'accounts/customer/add_customer.html',context)
+    template = 'accounts/customer/add_customer.html'
+    return render(request,template,context)
 
 def edit_customer(request,customer_id):
     customer = Customer.objects.get(pk=customer_id)
@@ -40,7 +42,8 @@ def edit_customer(request,customer_id):
         messages.success(request,'Customer Successfully Updated')
         return redirect('accounts:customer',customer_id)
     context = {'form':form}
-    return render(request,'accounts/customer/add_customer.html',context)
+    template = 'accounts/customer/add_customer.html'
+    return render(request,template,context)
 
 def delete_customer(request,customer_id):
     customer = Customer.objects.get(pk=customer_id)
@@ -49,7 +52,8 @@ def delete_customer(request,customer_id):
         messages.success(request,f'{customer.name} has been successfully deleted')
         return redirect('accounts:dashboard')
     context = {'customer':customer}
-    return render(request,'accounts/customer/delete_customer.html',context)
+    template = 'accounts/customer/delete_customer.html'
+    return render(request,template,context)
 
 
 def add_order(request):
@@ -59,7 +63,8 @@ def add_order(request):
         messages.success(request,'Order Successfully Added')
         return redirect('accounts:dashboard')
     context = {'form':form}
-    return render(request,'accounts/order/add_order.html',context)
+    template = 'accounts/order/add_order.html'
+    return render(request,template,context)
 
 def edit_order(request,order_id):
     order = Order.objects.get(pk=order_id)
@@ -69,7 +74,8 @@ def edit_order(request,order_id):
         messages.success(request,'Order Successfully Updated')
         return redirect('accounts:dashboard')
     context = {'form':form}
-    return render(request,'accounts/order/add_order.html',context)
+    template = 'accounts/order/add_order.html'
+    return render(request,template,context)
 
 def delete_order(request,order_id):
     order = Order.objects.get(pk=order_id)
@@ -78,4 +84,5 @@ def delete_order(request,order_id):
         messages.success(request,f'{order.id} has been successfully deleted')
         return redirect('accounts:dashboard')
     context = {'order':order}
-    return render(request,'accounts/order/delete_order.html',context)
+    template = 'accounts/order/delete_order.html'
+    return render(request,template,context)
