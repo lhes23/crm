@@ -13,6 +13,7 @@
                       <th>Name</th>
                       <th>Product</th>
                       <th>Address</th>
+                      <th>Date</th>
                       <th>Status</th>
                     </tr>
                     </thead>
@@ -23,6 +24,7 @@
                       <td>{{order.customer}}</td>
                       <td>{{order.product}}</td>
                       <td>{{order.customer.address}}</td>
+                      <td>{{order.delivery}}</td>
                       <td><span class="badge badge-info">{{order.status}}</span></td>
                     </tr>
                     {% endfor %}
@@ -33,7 +35,7 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <a href="" class="btn btn-sm btn-info float-left">Place New Order</a>
+                <a href="{% url 'accounts:add_order'%}" class="btn btn-sm btn-info float-left">Place New Order</a>
               </div>
               <!-- /.card-footer -->
             </div>

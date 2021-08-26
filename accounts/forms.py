@@ -7,3 +7,8 @@ class CustomerForm(ModelForm):
     class Meta:
         model = Customer
         fields = '__all__'
+
+class OrderForm(ModelForm):
+    class Meta:
+        model = Order
+        fields = '__all__'
