@@ -1,4 +1,6 @@
 {% extends 'accounts/index_layout.html' %}
 {% block content %}
     <h1>This is the Homepage</h1>
+    <div><a href="{% url 'accounts:register'%}">Register</a></div>
+    <div><a href="{% url 'accounts:login'%}">Login</a></div>
 {% endblock content %}
