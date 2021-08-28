@@ -52,11 +52,13 @@ def dashboard(request):
     template = 'accounts/dashboard.html'
     return render(request,template,context)
 
+@login_required
 def customer(request,customer_id):
     context = {'customer':Customer.objects.get(pk=customer_id)}
     template = 'accounts/customer/customer.html'
     return render(request,template,context)
 
+@login_required
 def add_customer(request):
     form = CustomerForm(request.POST or None)
     if form.is_valid():
@@ -67,6 +69,7 @@ def add_customer(request):
     template = 'accounts/customer/add_customer.html'
     return render(request,template,context)
 
+@login_required
 def edit_customer(request,customer_id):
     customer = Customer.objects.get(pk=customer_id)
     form = CustomerForm(request.POST or None, instance=customer)
@@ -78,6 +81,7 @@ def edit_customer(request,customer_id):
     template = 'accounts/customer/add_customer.html'
     return render(request,template,context)
 
+@login_required
 def delete_customer(request,customer_id):
     customer = Customer.objects.get(pk=customer_id)
     if request.method == 'POST':
@@ -88,6 +92,7 @@ def delete_customer(request,customer_id):
     template = 'accounts/customer/delete_customer.html'
     return render(request,template,context)
 
+@login_required
 def add_order(request):
     form = OrderForm(request.POST or None)
     if form.is_valid():
@@ -98,6 +103,7 @@ def add_order(request):
     template = 'accounts/order/add_order.html'
     return render(request,template,context)
 
+@login_required
 def edit_order(request,order_id):
     order = Order.objects.get(pk=order_id)
     form = OrderForm(request.POST or None, instance=order)
@@ -109,6 +115,7 @@ def edit_order(request,order_id):
     template = 'accounts/order/add_order.html'
     return render(request,template,context)
 
+@login_required
 def delete_order(request,order_id):
     order = Order.objects.get(pk=order_id)
     if request.method == 'POST':
