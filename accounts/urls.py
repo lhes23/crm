@@ -18,3 +18,5 @@ urlpatterns = [
     path('dashboard/order/edit/<order_id>',edit_order,name='edit_order'),
     path('dashboard/order/delete/<order_id>',delete_order,name='delete_order'),
 ]
+
+handler404 = 'accounts.views.error_404'

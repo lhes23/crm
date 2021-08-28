@@ -125,3 +125,7 @@ def delete_order(request,order_id):
     context = {'order':order}
     template = 'accounts/order/delete_order.html'
     return render(request,template,context)
+
+
+def error_404(request, exception):
+    return render(request,'accounts/404.html')
