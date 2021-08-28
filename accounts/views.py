@@ -1,12 +1,15 @@
 from django import forms
 from django.contrib import auth
 from django.shortcuts import render,redirect
+from django.views.generic.detail import DetailView
 from .models import *
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import CreateView, UpdateView
+from django.urls import reverse_lazy
 
 def index(request):
     return render(request,'accounts/index.html')
@@ -129,3 +132,19 @@ def delete_order(request,order_id):
 
 def error_404(request, exception):
     return render(request,'accounts/404.html')
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'accounts/product/add_product.html'
+    success_url = reverse_lazy('accounts:dashboard')
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'accounts/product/add_product.html'
+    success_url = reverse_lazy('accounts:dashboard')
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'accounts/product/product_detail.html'

@@ -27,6 +27,11 @@ class OrderForm(ModelForm):
             'delivery_time':TimeInput
         }
 
+class ProductForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = '__all__'
+
 class UserForm(UserCreationForm):
     class Meta:
         model = User

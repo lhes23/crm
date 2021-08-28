@@ -46,6 +46,11 @@
       <!-- /.card-footer -->
 
       <!-- Main row -->
+      <div class="row">
+            <div class="col-md-12">
+               {% include 'accounts/dashboard/orders-table.html' %}
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
                {% include 'accounts/dashboard/customers-table.html' %}
@@ -55,10 +60,6 @@
             </div>
         </div>
         <!-- /.row -->
-        <div class="row">
-            <div class="col-md-12">
-               {% include 'accounts/dashboard/orders-table.html' %}
-            </div>
-        </div>
+        
 
 {% endblock content %}
