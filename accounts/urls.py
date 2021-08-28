@@ -19,8 +19,8 @@ urlpatterns = [
 
     # Product Path
     path('dashboard/product/add',ProductCreateView.as_view(),name='add_product'),
-    path('dashboard/product/edit/<pk>',ProductUpdateView.as_view,name='edit_product'),
-    # path('dashboard/product/delete/<product_id>',delete_product,name='delete_product'),
+    path('dashboard/product/edit/<pk>',ProductUpdateView.as_view(),name='edit_product'),
+    path('dashboard/product/delete/<pk>',ProductDeleteView.as_view(),name='delete_product'),
     path('dashboard/product/<pk>',ProductDetailView.as_view(),name='product'),
 
     # Order Path
