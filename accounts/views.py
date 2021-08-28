@@ -6,6 +6,7 @@ from .forms import *
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request,'accounts/index.html')
@@ -38,6 +39,7 @@ def LogoutPage(request):
     logout(request)
     return redirect('accounts:index')
 
+@login_required
 def dashboard(request):
     context = {
         'customers_count':Customer.objects.count(),

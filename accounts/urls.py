@@ -5,9 +5,9 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('',index, name='index'),
-    path('register/',RegisterPage,name='register'),
-    path('login/',LoginPage,name='login'),
-    path('logout/',LogoutPage,name='logout'),
+    path('accounts/register/',RegisterPage,name='register'),
+    path('accounts/login/',LoginPage,name='login'),
+    path('accounts/logout/',LogoutPage,name='logout'),
     path('dashboard/',dashboard,name='dashboard'),
     path('dashboard/customer/add',add_customer,name='add_customer'),
     path('dashboard/customer/edit/<customer_id>',edit_customer,name='edit_customer'),
