@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -134,15 +135,13 @@ def delete_order(request,order_id):
 def error_404(request, exception):
     return render(request,'accounts/404.html')
 
-@login_required
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin,CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'accounts/product/add_product.html'
     success_url = reverse_lazy('accounts:dashboard')
 
-@login_required
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin,UpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'accounts/product/add_product.html'
@@ -151,13 +150,11 @@ class ProductUpdateView(UpdateView):
         pk = self.kwargs['pk']
         return reverse_lazy('accounts:product',kwargs={'pk':pk})
 
-@login_required
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin,DetailView):
     model = Product
     template_name = 'accounts/product/product_detail.html'
 
-@login_required
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin,DeleteView):
     model = Product
     template_name = 'accounts/product/delete_product.html'
     success_url = reverse_lazy('accounts:dashboard')
