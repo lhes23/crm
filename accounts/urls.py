@@ -15,7 +15,10 @@ urlpatterns = [
     path('dashboard/customer/add',add_customer,name='add_customer'),
     path('dashboard/customer/edit/<customer_id>',edit_customer,name='edit_customer'),
     path('dashboard/customer/delete/<customer_id>',delete_customer,name='delete_customer'),
+    # path('dashboard/customer/search',CustomerSearchListView.as_view(),name='search_customer'),
+    path('dashboard/customer/search',search_customer,name='search_customer'),
     path('dashboard/customer/<customer_id>',customer,name='customer'),
+    
 
     # Product Path
     path('dashboard/product/add',ProductCreateView.as_view(),name='add_product'),

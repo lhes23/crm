@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import auth
+from django.http import request
 from django.shortcuts import render,redirect
 from django.views.generic.detail import DetailView
 from .models import *
@@ -10,6 +11,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 
 
@@ -134,6 +136,18 @@ def delete_order(request,order_id):
 
 def error_404(request, exception):
     return render(request,'accounts/404.html')
+
+
+def search_customer(request):
+    template = 'accounts/customer/search_customer.html'
+    context = {}
+    if request.method == "POST":
+        name = request.POST['search_customer']
+        customers = Customer.objects.filter(name__icontains=name)
+        context = {'customers':customers}
+    return render(request,template,context)
+
+
 
 class ProductCreateView(LoginRequiredMixin,CreateView):
     model = Product
