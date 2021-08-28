@@ -1,7 +1,11 @@
+from django.contrib.auth import forms
 from django.db.models import fields
-from django.forms import ModelForm,DateInput,TimeInput
+from django.forms import ModelForm,DateInput,TimeInput, widgets
 from .models import *
 from django.views.generic import CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django import forms
 
 class DateInput(DateInput):
     input_type = 'date'
@@ -21,4 +25,20 @@ class OrderForm(ModelForm):
         widgets = {
             'delivery_date':DateInput(),
             'delivery_time':TimeInput
+        }
+
+class UserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username','email','password1','password2']
+        widgets = {
+            'username':forms.TextInput(attrs={
+                'placeholder':'Username',
+                'class':'form-control',
+            }),
+            'email':forms.TextInput(attrs={
+                'placeholder':'Email Address',
+                'class':'form-control',
+            }),
+            'password1':forms.PasswordInput(attrs={'class':'form-control'}),
         }

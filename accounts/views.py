@@ -1,14 +1,42 @@
 from django import forms
+from django.contrib import auth
 from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
 from django.contrib import messages
-
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate,login,logout
 
 def index(request):
     return render(request,'accounts/index.html')
+
+def RegisterPage(request):
+    form = UserForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request,'Acount Successfully Created')
+        return redirect('accounts:dashboard')
+    context ={'form':form}
+    template = 'accounts/register.html'
+    return render(request,template,context)
+
+def LoginPage(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username,password=password)
+        if user is not None:
+            login(request,user)
+            return redirect('accounts:dashboard')
+        else:
+            messages.warning(request,'Username or Password Incorrect')
+    context ={}
+    template = 'accounts/login.html'
+    return render(request,template,context)
+
+def LogoutPage(request):
+    logout(request)
+    return redirect('accounts:index')
 
 def dashboard(request):
     context = {
@@ -88,10 +116,3 @@ def delete_order(request,order_id):
     context = {'order':order}
     template = 'accounts/order/delete_order.html'
     return render(request,template,context)
-
-class OrderList(ListView):
-    model = Order
-
-class CustomerView(DetailView):
-    model = Customer
-    template_name = 'accounts/customer/customer.html'
