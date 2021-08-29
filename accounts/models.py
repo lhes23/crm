@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Customer(models.Model):
+    user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=200)
     number = models.IntegerField(null=True)

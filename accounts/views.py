@@ -49,12 +49,12 @@ def LogoutPage(request):
 @login_required
 def dashboard(request):
     context = {
-        'customers_count':Customer.objects.count(),
         'customers':Customer.objects.all(),
-        'products_count':Product.objects.count(),
+        'customers_count':Customer.objects.count(),
         'products':Product.objects.all(),
+        'products_count':Product.objects.count(),
+        'orders':Order.objects.all().order_by('delivery_date'),
         'orders_count':Order.objects.count(),
-        'orders':Order.objects.all().order_by('delivery_date')
     }
     template = 'accounts/dashboard.html'
     return render(request,template,context)
@@ -62,7 +62,7 @@ def dashboard(request):
 @login_required
 def customer(request,customer_id):
     context = {'customer':Customer.objects.get(pk=customer_id)}
-    template = 'accounts/customer/customer.html'
+    template = 'accounts/profile.html'
     return render(request,template,context)
 
 @login_required
