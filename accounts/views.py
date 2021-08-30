@@ -35,7 +35,12 @@ def LoginPage(request):
         user = authenticate(request, username=username,password=password)
         if user is not None:
             login(request,user)
-            return redirect('accounts:dashboard')
+            if user.groups.filter(name='Admins'):
+                messages.success(request,"Administrator")
+                return redirect('accounts:dashboard')
+            else:
+                messages.success(request,"Customer")
+                return redirect('accounts:user_page')
         else:
             messages.warning(request,'Username or Password Incorrect')
     context ={}
@@ -43,6 +48,7 @@ def LoginPage(request):
     return render(request,template,context)
 
 def LogoutPage(request):
+    messages.success(request,'You have successfully logout')
     logout(request)
     return redirect('accounts:index')
 
@@ -60,9 +66,17 @@ def dashboard(request):
     return render(request,template,context)
 
 @login_required
+def user_page(request):
+    customer = request.user.customer
+    form = CustomerForm(instance=customer)
+    context = {'form':form}
+    template = 'accounts/profile.html'
+    return render(request,template,context)
+
+@login_required
 def customer(request,customer_id):
     context = {'customer':Customer.objects.get(pk=customer_id)}
-    template = 'accounts/profile.html'
+    template = 'accounts/customer/customer.html'
     return render(request,template,context)
 
 @login_required

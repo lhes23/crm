@@ -10,6 +10,7 @@ urlpatterns = [
     path('accounts/login/',LoginPage,name='login'),
     path('accounts/logout/',LogoutPage,name='logout'),
     path('dashboard/',dashboard,name='dashboard'),
+    path('dashboard/user/',user_page, name='user_page'),
     
     # Customer Path
     path('dashboard/customer/add',add_customer,name='add_customer'),
